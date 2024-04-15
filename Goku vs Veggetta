@@ -1,0 +1,84 @@
+using static Characters.Character;
+
+namespace Characters;
+
+
+
+public class Character
+{
+    public string nameCharacter { get; set; }
+    public int pointDeVie { get; set; }
+    public int forceDeAttaque { get; set; }
+    public int forceDeDefense { get; set; }
+
+    public bool IsAlive()
+    {
+
+       
+        if (pointDeVie <= 0)
+        {
+           
+           return false;
+        }
+        return true;
+    }
+
+    
+
+
+
+    public void Attack(Character player1)
+    {
+
+        player1.pointDeVie = (this.pointDeVie) - (player1.forceDeAttaque - this.forceDeDefense);
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+public class Program
+{
+    static void Main(string[] args)
+    {
+
+
+
+        Character player1 = new Character();
+        player1.pointDeVie = 20;
+        player1.forceDeAttaque =10;
+        player1.forceDeDefense = 5;
+        player1.nameCharacter = "Vegetta";
+
+        Character player2 = new Character();
+        player2.pointDeVie = 20;
+        player2.forceDeAttaque = 10;
+        player2.forceDeDefense = 5;
+        player2.nameCharacter = "Goku";
+
+        player1.Attack(player2);
+
+        player2.Attack(player1);
+
+        player1.Attack(player2);
+
+        if (player1.IsAlive() && !player2.IsAlive())
+        {
+            Console.WriteLine(player1.nameCharacter + " is the winner!");
+        }
+        else
+        {
+            Console.WriteLine(player2.nameCharacter + " is the winner!");
+        }
+
+    }
+}
